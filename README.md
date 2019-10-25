@@ -28,6 +28,10 @@ Clone master repository
 ```bash 
 git clone https://github.com/Atmoterm/ckanext-cesiumpreview.git
 ```
+Activate venv
+```bash
+. /usr/lib/ckan/default/bin/activate.sh
+```
 Finaly, run setup.py file with `install` key to finish prod installation
 ```bash 
 sudo /usr/lib/ckan/default/bin/python setup.py install
