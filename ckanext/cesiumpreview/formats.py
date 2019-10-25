@@ -16,7 +16,7 @@ class CSV(object):
 
 class GeoJSON(object):
     def type(self):
-        return 'gjson'    
+        return 'geojson'    
 
 
 

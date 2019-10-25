@@ -22,7 +22,7 @@
   {% elif geo_format.type() == "csv" %}
     format['type']         ='{{ geo_format.type()         |safe }}';
     console.log(format);
-  {% elif geo_format.type() == "gjson" %}
+  {% elif geo_format.type() == "geojson" %}
     format['type']         ='{{ geo_format.type()         |safe }}';
   {% endif %}
 

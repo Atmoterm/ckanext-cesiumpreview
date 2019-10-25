@@ -2,18 +2,29 @@ ckan.module('cesiumpreview', function (jQuery) {
     return {
         initialize: function () {
 
+	    function items_geojson(){
+		return [{
+		    "isEnabled" : true,
+		    "name": name, 
+		    "type": format['type'],
+		    "url": resource_url,
+		}]
+	    }
+		
+
+	    
 	    function items_csv (){
 		return [{
 		    "isEnabled"  : true,
-		    "name": "costam", // name, 
-		    "description": "niecostam", // description,
-		    "type": 'csv',//format['type'],
+		    "name": name, 
+		    "description": description,
+		    "type": format['type'],
 		    "url": resource_url,
 		    "tableStyle": {
 			// "dataVariable": "State",
 			// "timeColumn": null,
 			// "scaleByValue": true,
-			"scale": 1,
+			"scale": 2,
 			// "colorMap": "green-orange-red",
 			// "imageUrl": "/test/images/map-marker2.png"
 		    }
@@ -40,7 +51,7 @@ ckan.module('cesiumpreview', function (jQuery) {
 
 	    // 'camera' variable defined in file 'cesium.html'
 	    function camera_position() {
-		if  (!jQuery.isEmptyObject(format['camera']) &&
+		if  (!jQuery.isEmptyObject(format['camera'])  &&
 		     format['camera']['west' ] !== undefined  &&
 		     format['camera']['south'] !== undefined  &&
 		     format['camera']['east' ] !== undefined  &&
@@ -67,7 +78,8 @@ ckan.module('cesiumpreview', function (jQuery) {
 	    }
 
             var self = this;
-	    var vis_server = 'https://dev-app.ekostrateg.com/mapy/#hideWorkbench=1&hideExplorerPanel=1';
+	    // var vis_server = 'https://dev-app.ekostrateg.com/mapy/#hideWorkbench=1&hideExplorerPanel=1';
+	    var vis_server = 'http://192.168.1.32:3001/#hideWorkbench=1&hideExplorerPanel=1'
             var config = {
                 "version": "0.1",
 		"hideSource": true,
@@ -97,8 +109,10 @@ ckan.module('cesiumpreview', function (jQuery) {
 		config["initSources"][0]['catalog'][0]['items']  = items_wms ();
 	    }
 	    if (format["type"] == "csv") {
-		console.log(items_csv());
 		config["initSources"][0]['catalog'][0]['items']  = items_csv ();
+	    }
+	    if (format["type"] == "geojson") {
+		config["initSources"][0]['catalog'][0]['items']  = items_geojson ();
 	    }
 
 	    console.log(config);
