@@ -1,0 +1,44 @@
+{% extends 'dataviewer/base.html' %}
+
+{% block page %}
+  
+<script>
+
+  {# {% set package = c.package or h.package_show({"id":c.id}) %} #}
+  {# {% set package = h.package_show(tmpl_context, {"id": c.id}) %} #}
+  resource_json    = {{resource_json|safe}};
+  var name         = resource_json["name"];
+  var description  = resource_json["description"];
+  var format       = resource_json["format"];
+  var resource_url = resource_json["url"] ;
+
+  var format = {};
+  {% set geo_format = h.load_geodata({"id": c.resource_id}) %}
+  {% if geo_format.type() == "wms" %}
+    format['camera']       = {{ geo_format.camera()       |safe }};
+    format['type']         ='{{ geo_format.type()         |safe }}';
+    format['layer_title']  = {{ geo_format.layers_titles()|safe }};
+    console.log(format);
+  {% elif geo_format.type() == "csv" %}
+    format['type']         ='{{ geo_format.type()         |safe }}';
+    console.log(format);
+  {% elif geo_format.type() == "gjson" %}
+    format['type']         ='{{ geo_format.type()         |safe }}';
+  {% endif %}
+
+  {# resource_json_view    = '{{resource_json_view|safe}}'; #}
+  {# console.log(resource_json_view); #}
+  
+
+</script>
+
+<div>
+  <pre data-module="cesiumpreview"> 
+    <div class="loading"> 
+      {{ _('Loading...') }} 
+    </div> 
+  </pre> 
+</div>
+
+{% resource 'ckanext-cesiumpreview/main' %}
+{% endblock %}
