@@ -104,3 +104,4 @@ class CesiumPreview(p.SingletonPlugin):
 
     def resource_show(self, context, data_dict):
         return get_action('resource_show')(context, data_dict)
+
