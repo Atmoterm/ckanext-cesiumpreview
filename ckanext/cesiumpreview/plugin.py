@@ -105,30 +105,3 @@ class CesiumPreview(p.SingletonPlugin):
     def resource_show(self, context, data_dict):
         return get_action('resource_show')(context, data_dict)
 
-
-'''
-# example of resource data
-{
-   'mimetype':None,
-   'cache_url':None,
-   'hash':'',
-   'description':'',
-   'name':'dyrekcja costam',
-   'format':'WMS',
-   'url':'https://dev-app.ekostrateg.com/cgeoserver/Luma/wms?version=1.1.1&service=WMS&request=GetCapabilities',
-   'datastore_active':False,
-   'cache_last_updated':None,
-   'package_id':'01be2195-390d-46cc-b99f-df2af4dcc7b1',
-   'created':'2019-10-10T12:31:30.662767',
-   'state':'active',
-   'mimetype_inner':None,
-   'last_modified':None,
-   'position':0,
-   'revision_id':'ab75d171-b2b3-4636-9304-f69ab2fb13e5',
-   'url_type':'',
-   'id':'09d21bf0-c2f3-4b7b-a514-51f11cb7117a',
-   'resource_type':None,
-   'size':None
-}
-
-'''
