@@ -18,5 +18,17 @@ more information about how to get this working with CKAN
 * Fork the [NationalMap](https://github.com/NICTA/nationalmap.git) repo into your personal github account using the github UI.
 * Clone your forks locally so data is inside subspace at root level e.g.
 
+### Installation ###
 
-
+Move to ckan src directory. By default it `/usr/lib/ckan/default/src`
+```bash
+cd /usr/lib/ckan/default/src/
+```
+Clone master repository
+```bash 
+git clone https://github.com/Atmoterm/ckanext-cesiumpreview.git
+```
+Finaly, run setup.py file with `install` key to finish prod installation
+```bash 
+sudo /usr/lib/ckan/default/bin/python setup.py install
+```
