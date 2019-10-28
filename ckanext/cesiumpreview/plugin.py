@@ -71,14 +71,6 @@ class CesiumPreview(p.SingletonPlugin):
         return False
 
     def setup_template_variables(self, context, data_dict):
-        if (self._proxy_is_enabled
-            and not data_dict['resource']['on_same_domain']):
-            url = proxy.get_proxified_resource_url(data_dict)
-            p.toolkit.c.resource['url'] = url
-
-    def setup_template_variables(self, context, data_dict):
-        print("DUPAdddddd: ")
-        print(data_dict['resource'])
         return {'resource_json'     : json.dumps(data_dict['resource']),
                 'resource_view_json': json.dumps(data_dict['resource_view']),
                 'terria_server'     : self._terria_map_server}

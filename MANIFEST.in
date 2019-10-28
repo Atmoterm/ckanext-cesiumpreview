@@ -1,0 +1,2 @@
+recursive-include ckanext/cesiumpreview/theme/public *
+recursive-include ckanext/cesiumpreview/theme/templates *
