@@ -38,7 +38,7 @@ class CesiumPreview(p.SingletonPlugin):
     def configure(self, config):
         enabled = config.get('ckan.resource_proxy_enabled', False)
         self._proxy_is_enabled = enabled
-	self._terria_map_server = config('ckan.terria.server', 'https://nationalmap.gov.au/')
+	self._terria_map_server = config.get('ckan.terria.server', 'https://nationalmap.gov.au/')
 	if (self._terria_map_server[len(self._terria_map_server)-1] == '/'):
 		self._terria_map_server = self._terria_map_server.strip() + "#mode=preview&map=2d&hideWorkbench=1&hideExplorerPanel=1"
 	else:
