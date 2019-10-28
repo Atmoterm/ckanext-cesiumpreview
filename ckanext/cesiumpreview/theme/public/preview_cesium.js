@@ -2,6 +2,7 @@ ckan.module('cesiumpreview', function (jQuery) {
     return {
         initialize: function () {
 
+	    // Generate GeoJSON items for group category
 	    function items_geojson(){
 		return [{
 		    "isEnabled" : true,
@@ -12,7 +13,7 @@ ckan.module('cesiumpreview', function (jQuery) {
 	    }
 		
 
-	    
+	    //  Generate CSV items for group category.
 	    function items_csv (){
 		return [{
 		    "isEnabled"  : true,
@@ -21,12 +22,7 @@ ckan.module('cesiumpreview', function (jQuery) {
 		    "type": format['type'],
 		    "url": resource_url,
 		    "tableStyle": {
-			// "dataVariable": "State",
-			// "timeColumn": null,
-			// "scaleByValue": true,
 			"scale": 2,
-			// "colorMap": "green-orange-red",
-			// "imageUrl": "/test/images/map-marker2.png"
 		    }
 		}]
 	    }
@@ -55,7 +51,7 @@ ckan.module('cesiumpreview', function (jQuery) {
 		     format['camera']['west' ] !== undefined  &&
 		     format['camera']['south'] !== undefined  &&
 		     format['camera']['east' ] !== undefined  &&
-		     format['camera']['north'] !== undefined)
+		     format['camera']['north'] !== undefined  )
 		{
 		    console.log("TRUE");
 		    return {
@@ -78,8 +74,8 @@ ckan.module('cesiumpreview', function (jQuery) {
 	    }
 
             var self = this;
+	    var vis_server = terria_server;
 	    // var vis_server = 'https://dev-app.ekostrateg.com/mapy/#hideWorkbench=1&hideExplorerPanel=1';
-	    var vis_server = 'http://192.168.1.32:3001/#hideWorkbench=1&hideExplorerPanel=1'
             var config = {
                 "version": "0.1",
 		"hideSource": true,
@@ -117,7 +113,7 @@ ckan.module('cesiumpreview', function (jQuery) {
 
 	    console.log(config);
             var encoded_config = encodeURIComponent(JSON.stringify(config));
-            var style = 'height: 600px; width: 100%; border: none;';
+	    var style = 'width: 1024px; height: 600px; border: none;';
             var display = 'allowFullScreen mozAllowFullScreen webkitAllowFullScreen';
             var html = '<iframe src="' + vis_server + '#clean&start=' + encoded_config + '" style="' + style + '" ' + display + '></iframe>';
             self.el.html(html);

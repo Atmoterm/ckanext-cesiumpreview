@@ -27,6 +27,7 @@ class CesiumPreview(p.SingletonPlugin):
     ''' PARAMS '''
     _cesium_formats = ['wms', 'csv', 'geojson', 'gjson']
     _proxy_is_enabled = False
+    _terria_map_server= 'https://dev-app.ekostrateg.com/mapy/#mode=preview&map=2d&hideWorkbench=1&hideExplorerPanel=1'
 
 
     def update_config(self, config):
@@ -79,7 +80,8 @@ class CesiumPreview(p.SingletonPlugin):
         print("DUPAdddddd: ")
         print(data_dict['resource'])
         return {'resource_json'     : json.dumps(data_dict['resource']),
-                'resource_view_json': json.dumps(data_dict['resource_view'])}
+                'resource_view_json': json.dumps(data_dict['resource_view']),
+                'terria_server'     : self._terria_map_server}
 
     def preview_template(self, context, data_dict):
         return 'cesium.html'
@@ -89,7 +91,7 @@ class CesiumPreview(p.SingletonPlugin):
 
     def get_helpers(self):
         return { 'resource_show':  self.resource_show,
-                 'load_geodata':  self.load_geodata}
+                 'load_geodata' :  self.load_geodata }
 
     '''WMS resource parser and helper function'''
     def load_geodata(self, data_dict):
