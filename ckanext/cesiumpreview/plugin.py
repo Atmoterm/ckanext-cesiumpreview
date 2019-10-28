@@ -27,7 +27,7 @@ class CesiumPreview(p.SingletonPlugin):
     ''' PARAMS '''
     _cesium_formats = ['wms', 'csv', 'geojson', 'gjson']
     _proxy_is_enabled = False
-    _terria_map_server= 'https://dev-app.ekostrateg.com/mapy/#mode=preview&map=2d&hideWorkbench=1&hideExplorerPanel=1'
+    _terria_map_server= ''
 
 
     def update_config(self, config):
@@ -38,6 +38,11 @@ class CesiumPreview(p.SingletonPlugin):
     def configure(self, config):
         enabled = config.get('ckan.resource_proxy_enabled', False)
         self._proxy_is_enabled = enabled
+	self._terria_map_server = config('ckan.terria.server', 'https://nationalmap.gov.au/')
+	if (self._terria_map_server[len(self._terria_map_server)-1] == '/'):
+		self._terria_map_server = self._terria_map_server.strip() + "#mode=preview&map=2d&hideWorkbench=1&hideExplorerPanel=1"
+	else:
+		self._terria_map_server = self._terria_map_server.strip() + "/#mode=preview&map=2d&hideWorkbench=1&hideExplorerPanel=1"
 
     def can_preview(self, data_dict):
         resource = data_dict['resource']
